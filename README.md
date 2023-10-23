@@ -7,4 +7,4 @@
 
 IP 51.250.80.77
 
-Backend https://movies.davedeneev.nomoredomainsrocks.ru
+Frontend https://movies.davedeneev.nomoredomainsrocks.ru
