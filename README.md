@@ -3,8 +3,6 @@
 
 Адрес репозитория: https://github.com/davedeneev/movies-explorer-frontend
 
-## Ссылки на проект
+## Ссылка на макет
 
-IP 51.250.80.77
-
-Frontend https://movies.davedeneev.nomoredomainsrocks.ru
+Dark-3: https://clck.ru/36fjkA

@@ -1,0 +1,150 @@
+.main {
+    margin: 40px 0 0;
+}
+
+.authorization {
+    margin: 0 auto;
+    max-width: 396px;
+    display: flex;
+    flex-direction: column;
+}
+
+.authorization__title {
+    margin: 0 0 40px;
+    color: #FFF;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.authorization__form {
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+}
+
+.authorization__wrapper {
+    position: relative;
+    display: grid;
+}
+
+.authorization__label {
+    display: block;
+    color: #8B8B8B;
+    font-size: 10px;
+    font-weight: 400;
+    padding: 0 0 10px;
+}
+
+.authorization__input {
+    padding: 0 15px;
+    border: none;
+    border-radius: 8px;
+    color: #FFF;
+    font-size: 13px;
+    font-weight: 400;
+    height: 46px;
+    background: #2F2F2F;
+    outline: none;
+}
+
+.authorization__input_error {
+    color: #EE3465;
+}
+
+.authorization__error {
+    margin-top: 10px;
+    display: block;
+    color: #EE3465;
+    font-size: 10px;
+    font-weight: 400;
+    visibility: hidden;
+}
+
+.authorization__error_visible {
+    visibility: visible;
+    margin-bottom: 10px;
+}
+
+.authorization__button {
+    margin: auto 0 0;
+    padding: 0;
+    height: 45px;
+    background: #4285F4;
+    border: none;
+    border-radius: 3px;
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.authorization__button:hover {
+    opacity: .8;
+}
+
+.authorization__check-wrapper {
+    margin: 16px 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 6px;
+}
+
+.authorization__check-text {
+    padding: 0;
+    color: #8B8B8B;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.authorization__check-link {
+    padding: 0;
+    color: #4285F4;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.authorization__check-link:hover {
+    opacity: .8;
+}
+
+@media screen and (max-width: 320px) {
+    .main {
+        margin-top: 50px;
+    }
+
+    .authorization {
+        width: 260px;
+        align-items: center;
+    }
+
+    .authorization__title {
+        margin-bottom: 80px;
+    }
+
+    .authorization__form {
+        min-height: 468px;
+        width: 260px;
+    }
+
+    .authorization__button {
+        font-size: 12px;
+    }
+
+    .authorization__check-wrapper {
+        margin-top: 14px;
+        gap: 7px;
+    }
+
+    .authorization__check-text {
+        font-size: 12px;
+    }
+
+    .authorization__check-link {
+        font-size: 12px;
+    }
+}

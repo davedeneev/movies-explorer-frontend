@@ -1,0 +1,124 @@
+.search-film {
+    padding: 60px 70px 10px;
+    max-width: 1140px;
+}
+
+.search-film__form {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 69px;
+    border-bottom: 1px solid #424242;
+}
+
+.search-film__container{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+}
+
+.search-film__input {
+    width: 100%;
+    color: #8B8B8B;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 17px;
+    background-color: #2F2F2F;
+    border: none;
+    border-radius: 40px;
+    padding: 14px 22px;
+}
+
+.search-film__button-submit {
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background-image: url(../../images/find-img.svg);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+}
+
+.search-film__button-submit:hover {
+    opacity: .8;
+}
+
+.search-film__wrapper {
+    margin-top: 41px;
+    display: flex;
+    align-items: center;
+}
+
+.search-film__toggle {
+    width: 36px;
+    height: 20px;
+    position: relative;
+    background-color: #8B8B8B;
+    border-radius: 10px;
+    appearance: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-film__toggle:checked {
+    background-color: #3ddc84;
+}
+
+.search-film__toggle:before {
+    width: 16px;
+    height: 16px;
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background-color: #FFF;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.search-film__toggle:checked:before {
+    transform: translateX(16px);
+}
+
+.search-film__desc {
+    margin: 0 0 0 12px;
+    color: #8B8B8B;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 17px;
+}
+
+@media screen and (max-width: 768px)  {
+    .search-film {
+        padding: 80px 30px 10px;
+        max-width: 708px;
+    }
+
+    .search-film__form {
+        padding-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 320px)  {
+    .search-film {
+        padding: 80px 14px 10px;
+        max-width: 292px;
+    }
+
+    .search-film__input{
+        font-size: 11px;
+    }
+
+    .search-film__desc {
+        font-size: 11px;
+        line-height: 18px;
+    }
+}
