@@ -26,8 +26,8 @@
 }
 
 .techs__desc {
-    margin: 0;
-    padding: 0 340px;
+    margin: 0 auto;
+    max-width: 460px;
     color: #FFF;
     text-align: center;
     font-size: 14px;
@@ -61,7 +61,7 @@
     letter-spacing: -0.56px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 830px) {
     .techs {
         padding: 90px 50px;
         min-height: 567px;
@@ -73,7 +73,6 @@
     }
 
     .techs__desc {
-        padding: 0 104px;
         font-size: 12px;
         line-height: 18px;
         letter-spacing: -0.48px;
@@ -91,7 +90,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 450px) {
     .techs {
         padding: 70px 18px;
         min-height: 651px;
@@ -111,7 +110,7 @@
     }
 
     .techs__desc {
-        padding: 0 14px;
+        max-width: 292px;
         font-size: 11px;
         line-height: 16px;
         letter-spacing: -0.44px;

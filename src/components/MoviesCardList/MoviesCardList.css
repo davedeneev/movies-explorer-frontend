@@ -6,9 +6,10 @@
 .movies-card-container__list {
     display: grid;
     gap: 37px 24px;
-    grid-template-columns: repeat(3, 364px);
+    grid-template-columns: repeat(auto-fill, 364px);
     grid-template-rows: repeat(auto-fit, 281px);
-    margin: 0 auto 60px;
+    margin-bottom: 60px;
+    justify-content: center;
 }
 
 .movies-card-container__more-button {
@@ -33,22 +34,22 @@
     }
 
     .movies-card-container__list {
-        margin: 0 auto 80px;
+        margin-bottom: 80px;
         gap: 30px 30px;
-        grid-template-columns: repeat(2, 339px);
+        grid-template-columns: repeat(auto-fill, 339px);
         grid-template-rows: repeat(auto-fit, 262px);
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 525px) {
     .movies-card-container {
         padding: 40px 10px 80px;
     }
 
     .movies-card-container__list {
-        margin: 0 auto 76px;
+        margin-bottom: 76px;
         gap: 14px;
-        grid-template-columns: repeat(1, 300px);
+        grid-template-columns: repeat(auto-fill, 300px);
         grid-template-rows: repeat(auto-fit, 237px);
     }
 }

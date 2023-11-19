@@ -107,10 +107,10 @@
     }
 }
 
-@media screen and (max-width: 320px)  {
+@media screen and (max-width: 525px)  {
     .search-film {
         padding: 80px 14px 10px;
-        max-width: 292px;
+        min-width: 292px;
     }
 
     .search-film__input{

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Register() {
 
     return(
-        <main className="main">
+        <main className="auth">
             <section className="authorization">
                 <h2 className="authorization__title">Добро пожаловать!</h2>
                 <form className="authorization__form">

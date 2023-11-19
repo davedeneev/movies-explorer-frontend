@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Login() {
     return(
-        <main className="main">
+        <main className="auth">
             <section class="authorization">
                 <h2 class="authorization__title">Рады видеть!</h2>
                 <form class="authorization__form">

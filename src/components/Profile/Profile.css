@@ -77,7 +77,7 @@
     font-weight: 500;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 480px) {
     .profile {
         padding: 70px 0 0;
         max-width: 260px;

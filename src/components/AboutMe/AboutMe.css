@@ -66,7 +66,7 @@
     grid-area: about-me__img;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 950px) {
     .about-me {
         padding: 90px 50px 0;
         min-height: 514px;
@@ -96,7 +96,21 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
+    .about-me {
+        gap: 66px 35px;
+    }
+
+    .about-me-desc__title {
+        font-size: 35px;
+    }
+
+    .about-me__img {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 525px) {
     .about-me {
         padding: 70px 14px 0;
         min-height: 834px;

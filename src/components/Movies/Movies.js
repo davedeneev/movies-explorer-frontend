@@ -10,9 +10,11 @@ function Movies() {
 
     return (
         <>
-            <SearchForm />
-            {isLoading && <Preloader />}
-            <MoviesCardList movies={moviesCardList} buttonType={"like"} />
+            <main className="content">
+                <SearchForm />
+                {isLoading && <Preloader />}
+                <MoviesCardList movies={moviesCardList} buttonType={"like"} />
+            </main>
             <Footer/>
         </>
     );

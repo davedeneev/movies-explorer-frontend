@@ -1,4 +1,4 @@
-.main {
+.auth {
     margin: 40px 0 0;
 }
 
@@ -112,8 +112,8 @@
     opacity: .8;
 }
 
-@media screen and (max-width: 320px) {
-    .main {
+@media screen and (max-width: 525px) {
+    .auth {
         margin-top: 50px;
     }
 
