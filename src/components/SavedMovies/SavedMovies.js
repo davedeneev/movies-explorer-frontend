@@ -1,23 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SearchForm from '../SearchForm/SearchForm.js'
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js'
-import Preloader from '../Preloader/Preloader.js'
 import Footer from "../Footer/Footer.js";
-import moviesCardList from "../../utils/moviesList.js";
 
-function Movies() {
-    const isLoading = false; //заглушка для проверки работы прелоудера на этом этапе
+function SavedMovies() {
+    const [savedMoviesList, setSavedMoviesList] = useState([]);
+
+    function handleMoviesSearch(movies) {
+        setSavedMoviesList(movies);
+    }
 
     return (
         <>
             <main className="content">
-                <SearchForm />
-                {isLoading && <Preloader />}
-                <MoviesCardList movies={moviesCardList} buttonType={"delete"} />
+                <SearchForm displaySearchResult={handleMoviesSearch} moviesList={savedMoviesList} searchType="saved" />
+                <MoviesCardList moviesList={savedMoviesList} setSavedMoviesList={setSavedMoviesList} searchType="saved" buttonType={"delete"} />
             </main>
             <Footer/>
         </>
     );
 }
 
-export default Movies;
+export default SavedMovies;
