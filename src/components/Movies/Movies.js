@@ -14,7 +14,7 @@ function Movies() {
         <>
             <main className="content">
                 <SearchForm displaySearchResult={handleMoviesSearch} moviesList={moviesList} searchType="all"/>
-                <MoviesCardList moviesList={moviesList} searchType="all" buttonType={"like"} />
+                <MoviesCardList moviesList={moviesList} setMoviesList={setMoviesList} searchType="all" buttonType={"like"} />
             </main>
             <Footer/>
         </>

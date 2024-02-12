@@ -4,17 +4,17 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList.js'
 import Footer from "../Footer/Footer.js";
 
 function SavedMovies() {
-    const [savedMoviesList, setSavedMoviesList] = useState([]);
+    const [moviesList, setMoviesList] = useState([]);
 
     function handleMoviesSearch(movies) {
-        setSavedMoviesList(movies);
+        setMoviesList(movies);
     }
 
     return (
         <>
             <main className="content">
-                <SearchForm displaySearchResult={handleMoviesSearch} moviesList={savedMoviesList} searchType="saved" />
-                <MoviesCardList moviesList={savedMoviesList} setSavedMoviesList={setSavedMoviesList} searchType="saved" buttonType={"delete"} />
+                <SearchForm displaySearchResult={handleMoviesSearch} moviesList={moviesList} searchType="saved" />
+                <MoviesCardList moviesList={moviesList} setMoviesList={setMoviesList} searchType="saved" buttonType={"delete"} />
             </main>
             <Footer/>
         </>

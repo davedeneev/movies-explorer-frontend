@@ -66,7 +66,7 @@ function MoviesCardList(props) {
     function deleteMovieCard(movieId) {
         deleteMovie(movieId)
             .then(() => {
-                props.setSavedMoviesList(movies => movies.filter(movie => movie._id !== movieId));
+                props.setMoviesList(movies => movies.filter(movie => movie._id !== movieId));
                 const localSavedMovies = JSON.parse(localStorage.getItem('localSavedMovies'));
                 const updatedSavedMovies = localSavedMovies.filter(movie => movie._id !== movieId);
                 localStorage.setItem('localSavedMovies', JSON.stringify(updatedSavedMovies));
