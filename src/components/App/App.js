@@ -11,7 +11,6 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import * as mainApi from "../../utils/MainApi";
 import { UserContext } from '../../utils/CurrentUserContext';
-import {getSavedMovies} from "../../utils/MainApi";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -21,6 +20,14 @@ function App() {
   useEffect(() => {
     handleTokenCheck();
   }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      mainApi.getUserInfo()
+          .then((data) => setCurrentUser(data))
+          .catch(error => console.log(error));
+    }
+  }, [loggedIn]);
 
   function handleTokenCheck() {
     const token = localStorage.getItem("jwt");

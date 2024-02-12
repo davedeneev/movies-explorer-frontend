@@ -35,6 +35,19 @@ export const checkToken = (token) => {
         .then(res => res.json())
 }
 
+export const getUserInfo = () => {
+    const token = localStorage.getItem('jwt');
+    return fetch(`${BASE_URL}/users/me`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    })
+        .then(res => res.json())
+}
+
 export const changeUserData = (name, email) => {
     const token = localStorage.getItem('jwt');
     console.log(name);
