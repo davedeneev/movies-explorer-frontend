@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as mainApi from "../../utils/MainApi";
 import { useFormWithValidation } from '../../utils/formValidation';
+import {getSavedMovies} from "../../utils/MainApi";
 
 
 function Register({ setLoggedIn }) {
@@ -36,6 +37,19 @@ function Register({ setLoggedIn }) {
                     if (res.token) {
                         localStorage.setItem("jwt", res.token);
                         setLoggedIn(true);
+
+                        const localSavedMovies = JSON.parse(localStorage.getItem('localSavedMovies'));
+
+                        if(localSavedMovies === null) {
+                            getSavedMovies()
+                                .then(data => {
+                                    localStorage.setItem('localSavedMovies', JSON.stringify(data));
+                                })
+                                .catch((err) => {
+                                    console.log({err});
+                                })
+                        }
+
                         navigate('/movies');
                     }
                 }
