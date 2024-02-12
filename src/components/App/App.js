@@ -20,19 +20,7 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
-
-    const localSavedMovies = JSON.parse(localStorage.getItem('localSavedMovies'));
-
-    if(localSavedMovies === null) {
-      getSavedMovies()
-          .then(data => {
-            localStorage.setItem('localSavedMovies', JSON.stringify(data));
-          })
-          .catch((err) => {
-            console.log({err});
-          })
-    }
-  }, [loggedIn]);
+  }, []);
 
   function handleTokenCheck() {
     const token = localStorage.getItem("jwt");
