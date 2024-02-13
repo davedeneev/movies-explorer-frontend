@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Preloader from '../Preloader/Preloader';
 import {getMovies} from "../../utils/MoviesApi";
+import { NO_RESULT_ERROR, EMPTY_QUERY_ERROR, SEARCH_SERVER_ERROR, SHORT_FILM_DURATION_LIMIT } from "../../utils/constants";
 
 function SearchForm(props) {
-    const SEARCH_SERVER_ERROR = 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
-    const EMPTY_QUERY_ERROR = 'Нужно ввести ключевое слово';
-    const NO_RESULT_ERROR = 'Ничего не найдено';
     const [isInputValid, setIsInputValid] = useState(props.searchType === 'all');
     const [searchQuery, setSearchQuery] = useState(props.searchType === 'all' ? (localStorage.getItem('searchMoviesQuery') || '') : '');
     const [searchInputError, setSearchInputError] = useState('');
@@ -13,6 +11,7 @@ function SearchForm(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [isShortFilmChecked, setIsShortFilmChecked] = useState(props.searchType === 'all' ? (localStorage.getItem('shortFilmCheckedButton') === 'true') : false);
     const errorClassName = `search-film__input-error ${(!isInputValid && searchInputError) ? 'search-film__input-error_visible' : ''}`
+    const [isSearchInputBlocked, setIsSearchInputBlocked] = useState(false);
 
     useEffect(() => {
         if (props.searchType === 'all') {
@@ -47,7 +46,10 @@ function SearchForm(props) {
         }
 
         if(isShortFilmChecked) {
-            filteredMovies = filteredMovies.filter(movie => movie.duration <= 40)
+            filteredMovies = filteredMovies.filter(movie => movie.duration <= SHORT_FILM_DURATION_LIMIT)
+            if (filteredMovies.length === 0) {
+                setSearchError(NO_RESULT_ERROR);
+            }
         }
 
         return filteredMovies;
@@ -67,6 +69,7 @@ function SearchForm(props) {
             if (localMoviesList === null) {
 
                 setIsLoading(true);
+                setIsSearchInputBlocked(true);
 
                 getMovies()
                     .then((movies) => {
@@ -78,6 +81,7 @@ function SearchForm(props) {
                     })
                     .finally(() => {
                         setIsLoading(false);
+                        setIsSearchInputBlocked(false);
                     });
             } else {
                 props.displaySearchResult(getSearchResult(JSON.parse(localMoviesList)));
@@ -91,7 +95,6 @@ function SearchForm(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-
         displayMovie();
     }
 
@@ -117,9 +120,10 @@ function SearchForm(props) {
                         placeholder="Фильм"
                         onChange={handleChangeSearchInput}
                         value={searchQuery}
+                        disabled={isSearchInputBlocked}
                         required
                     />
-                    <button className="search-film__button-submit"></button>
+                    <button className="search-film__button-submit" disabled={isSearchInputBlocked}></button>
                 </div>
                 <span className={errorClassName}>{searchInputError}</span>
                 <div className="search-film__wrapper">

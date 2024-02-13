@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../utils/CurrentUserContext';
 import { useFormWithValidation } from '../../utils/formValidation';
 import * as mainApi from "../../utils/MainApi";
+import { PROFILE_VALID_ERROR, SUCCESS_PROFILE_EDIT } from '../../utils/constants';
 
 function Profile({ setLoggedIn, setCurrentUser }) {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Profile({ setLoggedIn, setCurrentUser }) {
         const isNameChanged = userName !== currentUser.name;
         const isEmailChanged = userEmail !== currentUser.email;
         if (!isValid && isFormModified) {
-            setProfileEditError('Некорректный логин или пароль');
+            setProfileEditError(PROFILE_VALID_ERROR);
         }
         setIsFormModified(isNameChanged || isEmailChanged);
     }, [userName, userEmail, isValid, currentUser]);
@@ -35,7 +36,7 @@ function Profile({ setLoggedIn, setCurrentUser }) {
             .then((data) => {
                 if(!data.message) {
                     setCurrentUser(data);
-                    setProfileEditError('Данные профиля обновлены!');
+                    setProfileEditError(SUCCESS_PROFILE_EDIT);
                 } else {
                     setProfileEditError(data.message);
                 }

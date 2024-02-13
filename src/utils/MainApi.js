@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.movies.davedeneev.nomoredomainsrocks.ru';
+import { BASE_URL } from './constants';
 
 export const register = (data) => {
     return fetch(`${BASE_URL}/signup`, {

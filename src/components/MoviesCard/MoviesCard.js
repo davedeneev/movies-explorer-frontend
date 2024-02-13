@@ -15,15 +15,16 @@ function MoviesCard(props) {
 
     function handleClickSaveMovie(movieId, e) {
         const cardButton = e.target;
-        cardButton.classList.toggle('movies-card__button-save_active');
         const localSavedMovies = JSON.parse(localStorage.getItem('localSavedMovies'));
         const savedMovie = localSavedMovies.find(movie => movie.movieId === movieId);
+
         if(isMovieSaved) {
             props.deleteMovieCard(savedMovie._id);
             setIsMovieSaved(false);
         } else {
             props.saveMovieCard(movieId);
             setIsMovieSaved(true);
+            cardButton.classList.toggle('movies-card__button-save_active');
         }
     }
 

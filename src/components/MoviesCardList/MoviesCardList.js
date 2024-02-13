@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard.js'
 import {saveMovie, deleteMovie} from "../../utils/MainApi";
+import {
+    XL_SCREEN_WIDTH,
+    XL_SCREEN_CARDS_DEFAULT,
+    XL_SCREEN_CARDS_MORE,
+    L_SCREEN_WIDTH,
+    L_SCREEN_CARDS_DEFAULT,
+    L_SCREEN_CARDS_MORE,
+    S_SCREEN_CARDS_DEFAULT,
+    S_SCREEN_CARDS_MORE
+} from '../../utils/constants';
 
 function MoviesCardList(props) {
     const [moviesCardAmount, setMoviesCardAmount] = useState(getCardsAmount().defaultCardsAmount);
@@ -11,12 +21,12 @@ function MoviesCardList(props) {
         if (props.searchType === 'saved') {
             const allMovies = JSON.parse(localStorage.getItem('localSavedMovies')).length;
             return {defaultCardsAmount: allMovies}
-        } else if(currentScreenWidth >= 1280) {
-            return {defaultCardsAmount: 12, loadMoreButton: 3};
-        } else if(currentScreenWidth >= 768) {
-            return {defaultCardsAmount: 8, loadMoreButton: 2};
+        } else if(currentScreenWidth >= XL_SCREEN_WIDTH) {
+            return {defaultCardsAmount: XL_SCREEN_CARDS_DEFAULT, loadMoreButton: XL_SCREEN_CARDS_MORE};
+        } else if(currentScreenWidth >= L_SCREEN_WIDTH) {
+            return {defaultCardsAmount: L_SCREEN_CARDS_DEFAULT, loadMoreButton: L_SCREEN_CARDS_MORE};
         } else {
-            return {defaultCardsAmount: 5, loadMoreButton: 2};
+            return {defaultCardsAmount: S_SCREEN_CARDS_DEFAULT, loadMoreButton: S_SCREEN_CARDS_MORE};
         }
     }
 
