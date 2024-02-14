@@ -13,23 +13,19 @@ function MoviesCard(props) {
         }
     }, []);
 
-    function handleClickSaveMovie(movieId, e) {
-        const cardButton = e.target;
-        const localSavedMovies = JSON.parse(localStorage.getItem('localSavedMovies'));
-        const savedMovie = localSavedMovies.find(movie => movie.movieId === movieId);
+    function handleClickSaveMovie(movieId) {
+        let localSavedMovies = JSON.parse(localStorage.getItem('localSavedMovies'));
+        let savedMovie = localSavedMovies.find(movie => movie.movieId === movieId);
 
         if(isMovieSaved) {
-            props.deleteMovieCard(savedMovie._id);
-            setIsMovieSaved(false);
+            props.deleteMovieCard(savedMovie._id, setIsMovieSaved);
         } else {
-            props.saveMovieCard(movieId);
-            setIsMovieSaved(true);
-            cardButton.classList.toggle('movies-card__button-save_active');
+            props.saveMovieCard(movieId, setIsMovieSaved);
         }
     }
 
     function handleClickDeleteMovie(movieId) {
-        props.deleteMovieCard(movieId);
+        props.deleteMovieCard(movieId, setIsMovieSaved);
     }
 
     return(
@@ -48,7 +44,7 @@ function MoviesCard(props) {
                         type="button"
                         className={`movies-card__button movies-card__button-save ${isMovieSaved ?
                             'movies-card__button-save_active' : ''}`}
-                        onClick={(e) => handleClickSaveMovie(props.movieCardId, e)}></button>)
+                        onClick={() => handleClickSaveMovie(props.movieCardId)}></button>)
                     : (<button
                         type="button"
                         className="movies-card__button movies-card__button-delete"

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Preloader from '../Preloader/Preloader';
 import {getMovies} from "../../utils/MoviesApi";
-import { NO_RESULT_ERROR, EMPTY_QUERY_ERROR, SEARCH_SERVER_ERROR, SHORT_FILM_DURATION_LIMIT } from "../../utils/constants";
+import { EMPTY_QUERY_ERROR, SEARCH_SERVER_ERROR, SHORT_FILM_DURATION_LIMIT } from "../../utils/constants";
 
 function SearchForm(props) {
     const [isInputValid, setIsInputValid] = useState(props.searchType === 'all');
@@ -37,19 +37,12 @@ function SearchForm(props) {
         let filteredMovies = movies.filter(movie =>
             movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()));
 
-        if (filteredMovies.length === 0) {
-            setSearchError(NO_RESULT_ERROR);
-        }
-
         if (props.searchType === 'all') {
             localStorage.setItem('searchMoviesQuery', searchQuery);
         }
 
         if(isShortFilmChecked) {
             filteredMovies = filteredMovies.filter(movie => movie.duration <= SHORT_FILM_DURATION_LIMIT)
-            if (filteredMovies.length === 0) {
-                setSearchError(NO_RESULT_ERROR);
-            }
         }
 
         return filteredMovies;

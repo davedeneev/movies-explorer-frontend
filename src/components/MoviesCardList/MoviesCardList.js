@@ -9,11 +9,13 @@ import {
     L_SCREEN_CARDS_DEFAULT,
     L_SCREEN_CARDS_MORE,
     S_SCREEN_CARDS_DEFAULT,
-    S_SCREEN_CARDS_MORE
+    S_SCREEN_CARDS_MORE,
+    NO_RESULT_ERROR
 } from '../../utils/constants';
 
 function MoviesCardList(props) {
     const [moviesCardAmount, setMoviesCardAmount] = useState(getCardsAmount().defaultCardsAmount);
+    const [noCardsToDisplayError, setNoCardsToDisplayError] = useState('');
 
     function getCardsAmount() {
         const currentScreenWidth = window.innerWidth;
@@ -31,6 +33,14 @@ function MoviesCardList(props) {
     }
 
     useEffect(() => {
+        setNoCardsToDisplayError('');
+
+        if (props.moviesList.length === 0 && (props.searchType === "saved" || localStorage.getItem('localMoviesList') !== null)) {
+            setNoCardsToDisplayError(NO_RESULT_ERROR);
+        }
+        }, [props.moviesList.length])
+
+    useEffect(() => {
         function handleResizeScreen () {
             const cardsAmount = getCardsAmount();
             setMoviesCardAmount(cardsAmount.defaultCardsAmount);
@@ -45,7 +55,7 @@ function MoviesCardList(props) {
         setMoviesCardAmount((amount) => amount + getCardsAmount().loadMoreButton);
     }
 
-    function saveMovieCard(movieId) {
+    function saveMovieCard(movieId, setIsMovieSaved) {
         const selectedMovie = props.moviesList.find((movie) => movie.id === movieId);
         const movieToSave = {
             country: selectedMovie.country,
@@ -67,20 +77,21 @@ function MoviesCardList(props) {
                 const updatedSavedMovies = [...localSavedMovies, movie];
 
                 localStorage.setItem('localSavedMovies', JSON.stringify(updatedSavedMovies));
+                setIsMovieSaved(true);
             })
             .catch((err) => {
                 console.log({err});
             })
     }
 
-    function deleteMovieCard(movieId) {
+    function deleteMovieCard(movieId, setIsMovieSaved) {
         deleteMovie(movieId)
             .then(() => {
                 props.setMoviesList(movies => movies.filter(movie => movie._id !== movieId));
                 const localSavedMovies = JSON.parse(localStorage.getItem('localSavedMovies'));
                 const updatedSavedMovies = localSavedMovies.filter(movie => movie._id !== movieId);
                 localStorage.setItem('localSavedMovies', JSON.stringify(updatedSavedMovies));
-
+                setIsMovieSaved(false);
             })
             .catch(err => console.log(err));
     }
@@ -102,6 +113,7 @@ function MoviesCardList(props) {
                     />
                 ))}
             </div>
+            {(noCardsToDisplayError !== '') && (<p className='movies-card-container__empty-error'>{noCardsToDisplayError}</p>)}
             { moviesCardAmount < props.moviesList.length && props.searchType === 'all' && (
                 <button
                     className="movies-card-container__more-button"

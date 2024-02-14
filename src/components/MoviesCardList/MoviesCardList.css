@@ -28,6 +28,14 @@
     opacity: .8;
 }
 
+.movies-card-container__empty-error {
+    display: block;
+    color: #EE3465;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+}
+
 @media screen and (max-width: 768px) {
     .movies-card-container {
         padding: 70px 30px 80px;
