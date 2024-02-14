@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 import Navigation from "../Navigation/Navigation";
 import NavigationUnlogged from "../NavigationUnlogged/NavigationUnlogged";
 
-function Header() {
-    const  isLogged = true; //заглушка для демонстрации изменения шапки в зависимости от статуса авторизации
-
+function Header(props) {
     return(
         <Routes>
             <Route path="/signin" element={
@@ -24,7 +22,7 @@ function Header() {
             <Route path="/" element={
                 <header className="header header__background">
                     <Link to="/" className="header__logo"></Link>
-                    {isLogged ? <Navigation /> : <NavigationUnlogged />}
+                    {props.loggedIn  ? <Navigation /> : <NavigationUnlogged />}
                 </header>
             } />
 
